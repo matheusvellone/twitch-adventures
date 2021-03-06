@@ -1,0 +1,23 @@
+{
+  "name": "ss-obs-disc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "obs-websocket-js": "^4.0.2",
+    "ramda": "^0.27.1",
+    "tmi.js": "^1.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
