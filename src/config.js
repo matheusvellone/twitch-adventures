@@ -1,6 +1,6 @@
 module.exports = {
-  channel: 'spykman',
-  debug: true,
+  channel: '',
+  debug: false,
 
   modules: {
     screenshot: {

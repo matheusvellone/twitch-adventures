@@ -1,31 +1,38 @@
 require('dotenv/config')
 const OBSWebSocket = require('obs-websocket-js')
-const tmi = require('tmi.js')
-const logger = require('./logger')('MAIN')
+const { Client } = require('tmi.js')
 
+const getLogger = require('./logger')
 const {
   channel,
+  debug,
 } = require('./config')
 const modules = require('./modules')
+
+const logger = getLogger('MAIN')
 
 const {
   OBS_WS_HOST,
   OBS_WS_PASSWORD,
+  TWITCH_CHAT_PASSWORD,
 } = process.env
 
 const obs = new OBSWebSocket()
 
-const twitch = new tmi.Client({
+const twitch = new Client({
+  options: {
+    debug,
+  },
   connection: {
     secure: true,
     reconnect: true,
   },
-  // TODO: set credentials to be able to send message to chat
-  // identity: {
-  //   username: 'my_bot_name',
-  //   password: 'oauth:my_bot_token'
-  // },
+  identity: {
+    username: channel,
+    password: TWITCH_CHAT_PASSWORD,
+  },
   channels: [channel],
+  logger: getLogger('TWITCH'),
 })
 
 const run = async () => {
